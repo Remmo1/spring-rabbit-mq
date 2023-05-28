@@ -1,5 +1,6 @@
 package com.example.rabbitmq;
 
+import com.example.rabbitmq.rabbit_app.MyData;
 import com.example.rabbitmq.rabbit_app.Receiver;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
@@ -11,6 +12,8 @@ import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.net.UnknownHostException;
 
 @SpringBootApplication
 public class RabbitMqApplication {
@@ -50,7 +53,8 @@ public class RabbitMqApplication {
 		return new MessageListenerAdapter(receiver, "receiveMessage");
 	}
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, UnknownHostException {
+		MyData.myInfo();
 		SpringApplication.run(RabbitMqApplication.class, args);
 	}
 }
